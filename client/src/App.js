@@ -4,27 +4,27 @@ import { useEffect, useState } from "react";
 import x from "./img/x.png";
 import o from "./img/o.png";
 
-let socket = io("http://localhost:3001/");
+let socket = io("https://tit-tat-toe.herokuapp.com/");
 
 function App() {
 	const [boardShown, setBoardShown] = useState(false);
 	const [matchmakingShown, setMatchmakingShown] = useState(false);
 	const [buttonShown, setButtonShown] = useState(true);
-  const [playAgainShown, setPlayAgainShown] = useState(false);
+  	const [playAgainShown, setPlayAgainShown] = useState(false);
 
 	const [room, setRoom] = useState(null);
 	const [board, setBoard] = useState(new Array(9).fill(null));
 	const [assignment, setAssignment] = useState(null);
 	const [turn, setTurn] = useState("X");
-  const [winner, setWinner] = useState("O");
+  	const [winner, setWinner] = useState("O");
 	const [gameOver, setGameOver] = useState(true);
 
 	const startMatchmaking = () => {
 		socket.emit("start_matchmaking");
 		setMatchmakingShown(true);
 		setButtonShown(false);
-    setPlayAgainShown(false);
-    setBoardShown(false);
+		setPlayAgainShown(false);
+		setBoardShown(false);
 
 		setRoom(null);
 		setBoard(new Array(9).fill(null));
@@ -43,7 +43,7 @@ function App() {
 		socket.off("connectGame").on("connectGame", (gameID) => {
 			setBoardShown(true);
 			setMatchmakingShown(false);
-      setPlayAgainShown(false);
+      	setPlayAgainShown(false);
 
 			setRoom(gameID);
 			setBoard(new Array(9).fill(null));
@@ -62,8 +62,8 @@ function App() {
 			setBoardShown(true);
 			setMatchmakingShown(false);
 			setButtonShown(false);
-      setWinner(null);
-      setPlayAgainShown(true);
+			setWinner(null);
+			setPlayAgainShown(true);
 
 			setRoom("");
 			setBoard(new Array(9).fill(null));
@@ -79,13 +79,13 @@ function App() {
 		});
 
 		socket.off("winner").on("winner", (winner) => {
-      setWinner(winner);
+			setWinner(winner);
 			setTimeout(() => {
 				setGameOver(true);
-        setPlayAgainShown(true);
+				setPlayAgainShown(true);
 			}, 500);
 		});
-	}, [socket]);
+	}, []);
 
 	return (
 		<div className="App">
@@ -98,6 +98,9 @@ function App() {
 				<p>Waiting for opponent...</p>
 			</div>
 
+			<p className={`Turn ${boardShown ? "" : " hidden"}`}>
+				{(turn === assignment) ? "Your Turn" : `${turn}'s Turn`}
+			</p>
 			<div className={`board ${boardShown ? "" : " hidden"}`}>
 				<button
 					onClick={select}

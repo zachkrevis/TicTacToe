@@ -1,6 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 body {
   margin: 0px;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: 'Fredoka One', sans-serif;
+
+  background: linear-gradient(-45deg, #23A6D5, #23D5AB, #EE7752, #E73C7E);
+  background-size: 400%, 400%;
+  background-position: 100% 50%;
+  animation: change 1.5s ease-in-out;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
 }
 
 .App {
@@ -9,12 +21,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-
-  background: linear-gradient(-45deg, #23A6D5, #23D5AB, #EE7752, #E73C7E);
-  background-size: 400%, 400%;
-  background-position: 100% 50%;
-  animation: change 1.5s ease-in-out;
+  height: 100%;
 }
 
 .board {
@@ -31,7 +38,6 @@ body {
   transition: background .2s ease-out;
   background:none;
   color: white;
-  font-size: 5rem;
   vertical-align: top;
   display: flex;
   justify-content: center;
@@ -78,6 +84,7 @@ body {
   background: white;
   font-size: 100%;
   border-radius: 32px;
+  color: black;
 }
 
 .matchmaking_button:hover {
@@ -128,6 +135,11 @@ p {
   margin-top: 0;
 }
 
+.Turn {
+  font-weight: 900;
+  margin: 1rem;
+}
+
 @keyframes pop_up {
   0% {
     transform: scale(0.0);
@@ -139,3 +151,52 @@ p {
 }
 
 
+@media (max-width: 720px) { 
+
+  .play_again {
+    width: 80%;
+  }
+
+  .board {
+    margin-bottom: 3rem;
+  }
+
+  .Spot {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .o {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+
+  .x{
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+
+}
+
+@media (max-width: 320px) { 
+
+  .board {
+    margin-bottom: 3rem;
+  }
+
+  .Spot {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .o {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .x{
+    height: 3rem;
+    width: 3rem;
+  }
+
+}
